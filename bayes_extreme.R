@@ -9,9 +9,15 @@ prior_vals <- ifelse(x >= 0 & x <= 0.5, 8 * x, 0) # prior triangular
 
 lik_vals <- dbeta(x, ST + 1, T - ST + 1) # likelihood (Beta)
 
-post_vals <- prior_vals * lik_vals # unnormalized posterior
- 
-post_vals <- post_vals / sum(post_vals) # normalize posterior using sum instead of integrate due to discrete grid(400) Riemann sum approximation :)
+# Compute normalising constant C using incomplete beta
+a <- ST + 2
+b <- (T - ST + 1)
+z <- 0.5
+C_partial <- pbeta(z, a, b) * beta(a, b)
+C <- 8 * C_partial
+
+# Compute posterior (analytic normalisation)
+post_vals_analytic <- ifelse(x <= 0.5, (8 * x * x^ST * (1-x)^(T-ST)) / C, 0)
 
 mle <- ST / T # maximum likelihood estimate for plotting purposes
 
@@ -27,8 +33,8 @@ plot(x, prior_vals,
      xlab = expression(theta),
      ylab = "Density")
 
-# Plot posterior
-plot(x, post_vals,
+# Plot posterior (analytic normalization)
+plot(x, post_vals_analytic,
      type = "l",
      col = "blue",
      lwd = 3,
