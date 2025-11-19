@@ -23,10 +23,12 @@ The resulting **Posterior Distribution** is calculated as $\text{Prior} \times \
 
 ## ⚙️ Mathematical and Computational Notes
 
-* **Prior Function:**
-    $$
-    \text{Prior}(\theta) = \begin{cases} 8\theta & \text{for } 0 \le \theta \le 0.5 \\ 0 & \text{otherwise} \end{cases}
-    $$
+$$
+\text{Prior}(\theta) = \begin{cases} 
+    8\theta & \text{for } 0 \le \theta \le 0.5 \\
+    0 & \text{otherwise} 
+\end{cases}
+$$
 * **Normalization:** The $\text{R}$ script uses a **grid approximation** for numerical stability. The normalization step (`post_vals / sum(post_vals)`) ensures the sum of the discrete probability masses is 1, a standard technique for continuous distributions evaluated on a discrete grid.
 
 ## 💾 Project Files
