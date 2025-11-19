@@ -1,13 +1,11 @@
 T <- 60 # number of trials
 theta <- 0.7 # true parameter value
-y <- rbinom(T, size = 1, prob = theta) # simulate data
+y <- rbinom(T, size = 1, prob = theta) # simulate data from binomial model size for 0 or 1
 ST <- sum(y) # number of successes
 
-x <- seq(0, 1, length.out = 400) # grid of theta values
+x <- seq(0, 1, length.out = 400) # grid of theta values from 0 to 1 with total points 400
 
 prior_vals <- ifelse(x >= 0 & x <= 0.5, 8 * x, 0) # prior triangular
-
-lik_vals <- dbeta(x, ST + 1, T - ST + 1) # likelihood (Beta)
 
 # Compute normalising constant C using incomplete beta
 a <- ST + 2
@@ -16,7 +14,7 @@ z <- 0.5
 C_partial <- pbeta(z, a, b) * beta(a, b)
 C <- 8 * C_partial
 
-# Compute posterior (analytic normalisation)
+# Compute posterior
 post_vals_analytic <- ifelse(x <= 0.5, (8 * x * x^ST * (1-x)^(T-ST)) / C, 0)
 
 mle <- ST / T # maximum likelihood estimate for plotting purposes
@@ -42,7 +40,7 @@ plot(x, post_vals_analytic,
      xlab = expression(theta),
      ylab = "Density")
 abline(v = mle, col = "red", lwd = 2, lty = 3)
-legend("topleft",
+legend("topright",
        legend = c("Posterior", "MLE"),
        col = c("blue", "red"),
        lty = c(1, 3),
