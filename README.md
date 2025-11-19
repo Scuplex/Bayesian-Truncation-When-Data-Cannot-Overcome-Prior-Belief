@@ -12,13 +12,12 @@ This project visualizes a fundamental principle of Bayesian inference where a st
 
 1.  **The Prior (Belief):** The triangular prior is defined only on $\theta \in [0, 0.5]$. Outside this boundary, its density is **zero**.
 
-    *You should save an image visualizing just the triangular prior as `prior.png` in your repository.*
 
 2.  **The Data (Evidence):** Data are simulated from a true $\theta=0.7$. This results in a **Maximum Likelihood Estimate ($\text{MLE}$) far above $0.5$**.
 
 The resulting **Posterior Distribution** is calculated as $\text{Prior} \times \text{Likelihood}$. Since multiplying by zero always yields zero, the posterior is **truncated** at $\theta=0.5$.
 
-![Combined plot showing the resulting Posterior, the scaled Triangular Prior, and the MLE](result.png)
+![Combined plot showing the resulting Posterior, the scaled Triangular Prior, and the MLE](prior.png)
 
 ---
 
