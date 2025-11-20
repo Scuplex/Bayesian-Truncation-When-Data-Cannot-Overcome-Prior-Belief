@@ -17,7 +17,7 @@ This project visualizes a fundamental principle of Bayesian inference where a st
 
 The resulting **Posterior Distribution** is calculated as $\text{Prior} \times \text{Likelihood}$. Since multiplying by zero always yields zero, the posterior is **truncated** at $\theta=0.5$.
 
-![Combined plot showing the resulting Posterior, the scaled Triangular Prior, and the MLE](priorr.png)
+![Combined plot showing the resulting Posterior, the scaled Triangular Prior, and the MLE](prior.png)
 
 ---
 
